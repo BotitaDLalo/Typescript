@@ -56,4 +56,26 @@ function saludarObj2(persona: { nombre: string; edad: number }) {
 saludarObj2({ nombre: "lalo", edad: 18 });
 
 //¿ funcion con return
-function saludarReturn({ }){}
+//? :number es opcional, es para indicar nosotros el tipo de dato que devolvera
+function saludarReturn({
+  nombre,
+  edad,
+}: {
+  nombre: string;
+  edad: number;
+}): number {
+  console.log(`Hola ${nombre}, tienes ${edad} años`);
+
+  return edad;
+}
+
+let user: string;
+user = saludarReturn({ nombre: "Juan", edad: 48 });
+
+let userN: number;
+userN = saludarReturn({ nombre: "Juan", edad: 48 });
+
+//¿ funcion con funcion como parametro
+const funcionFlecha = (fn) => {
+  return fn("Pepe");
+};
