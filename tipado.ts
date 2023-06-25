@@ -76,6 +76,86 @@ let userN: number;
 userN = saludarReturn({ nombre: "Juan", edad: 48 });
 
 //¿ funcion con funcion como parametro
-const funcionFlecha = (fn) => {
+const funcionFlecha = (fn: (nombre: string) => void) => {
   return fn("Pepe");
 };
+
+const paramFn = (nombre: string) => {
+  console.log(`hola ${nombre}`);
+};
+
+funcionFlecha(paramFn);
+
+//¿ funcion flecha
+//* tipar forma 1
+const sumar = (a: number, b: number) => {
+  return a + b;
+};
+
+//* tipar forma 2
+const restar: (a: number, b: number) => number = (a, b) => {
+  return a - b;
+};
+
+//¿ funcion con never
+//? Never es para que indicar que una funcion, nunca devolvera nada
+function throwError(message: string): never {
+  throw new Error(message);
+}
+
+//# never y void
+
+/**
+ *# Las funciones no tienen inferencia
+ ** Never: para indicar que una funcion nunca devolvera algo
+ ** Void: para indicar que una funcion puede devolver un dato, pero no nos interesa que devuelva un dato
+ */
+
+function logMessage(message: string): void {
+  console.log(message);
+  // throw new Error(message)
+
+  //! Con el never, no llega al return
+
+  // return implicito <= lo ignora => void => no devuelve nada
+  //* Con el void, si llega al return, pero lo ignora
+}
+
+//# inferencia de funciones anonimas segun el contexto
+/**
+ * * Aveces las funciones pueden inferir el tipo de dato, dependiendo su contexto en el que se crea esa funcion
+ */
+
+const avengers = ["Spiderman", "Hulk", "IronMan"];
+
+avengers.forEach((avenger) => {
+  console.log(avenger.toUpperCase());
+});
+
+//# Objetos
+//¿ Type Alias
+
+//$ optional properties
+type Heroe = {
+  readonly id?: number;
+  nombre: string;
+  edad: number;
+  activo?: boolean;
+};
+
+let heroe: Heroe = {
+  nombre: "hola",
+  edad: 5000,
+};
+
+function createHero(heroe: Heroe): Heroe {
+  const { nombre, edad } = heroe;
+  return { nombre, edad, activo: true };
+}
+
+const thor = createHero({ nombre: "Thor", edad: 6000 });
+
+//? si thor tiene un id ejecuta el metodo, si no tiene id no lo ejecutara
+thor.id?.toString()
+
+thor.id = 5
