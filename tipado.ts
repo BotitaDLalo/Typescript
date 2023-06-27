@@ -205,3 +205,28 @@ const addressHeroe: HeroeProperties["address"] = {
   planet: "tierra",
   city: "juarez",
 };
+
+//$ type from value
+const address = {
+  planet: "earth",
+  city: "Madrid",
+};
+//? Typeof es un operador que sirve para crear types a partir de codigo que ya exista
+type Adress = typeof address;
+
+const addressTwitch: Adress = {
+  planet: "Mars",
+  city: "Twitch",
+};
+
+//$ type from function return
+
+function createAddress() {
+  return {
+    planet: "tierra",
+    city: "Barcelona",
+  };
+}
+
+//? Returntype es para recuperar el tipo de lo que devuelve la funcion
+type AdressFunct = ReturnType<typeof createAddress>;
