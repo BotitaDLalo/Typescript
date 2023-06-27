@@ -192,4 +192,16 @@ ann = true;
 
 const habilitarDuracionAnimacion: boolean | number = 199.9;
 
-//$ type index
+//$ type indexing
+type HeroeProperties = {
+  isActive: boolean;
+  address: {
+    planet: string;
+    city: string;
+  };
+};
+
+const addressHeroe: HeroeProperties["address"] = {
+  planet: "tierra",
+  city: "juarez",
+};
