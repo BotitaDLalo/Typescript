@@ -230,3 +230,40 @@ function createAddress() {
 
 //? Returntype es para recuperar el tipo de lo que devuelve la funcion
 type AdressFunct = ReturnType<typeof createAddress>;
+
+/*************************************/
+
+//# Arreglos
+const lenguajes: (string | number)[] = [];
+
+lenguajes.push("Javascript");
+lenguajes.push(1);
+
+//?Heroes con array de types
+const heroesConInfoBasica: HeroeInfoBasica[] = [];
+
+//#Matrices
+
+type datoMatriz = "X" | "O" | "";
+
+//*Esto es una tupla
+//? Una tupla es un arreglo, que tiene un limite fijado de longitu
+type tablero = [
+  [datoMatriz, datoMatriz, datoMatriz],
+  [datoMatriz, datoMatriz, datoMatriz],
+  [datoMatriz, datoMatriz, datoMatriz]
+];
+
+const gameBoard: datoMatriz[][] = [
+  ["X", "O", "X"],
+  ["O", "X", "O"],
+  ["X", "", "O"],
+];
+
+//$ tuplas
+
+type State = [string, (name: string) => void];
+const [heroe, SetHeroe] = useState("thor");
+
+type RGB = [number, number, number];
+const RGB: RGB = [255, 255, 0];
