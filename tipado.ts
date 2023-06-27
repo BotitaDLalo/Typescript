@@ -136,11 +136,15 @@ avengers.forEach((avenger) => {
 //¿ Type Alias
 
 //$ optional properties
+
+type Heroeid = `${string}-${string}-${string}-${string}-${string}`;
+
 type Heroe = {
-  readonly id?: number;
+  readonly id?: Heroeid;
   nombre: string;
   edad: number;
   activo?: boolean;
+  EscalaPoder: HeroePoder;
 };
 
 let heroe: Heroe = {
@@ -150,12 +154,42 @@ let heroe: Heroe = {
 
 function createHero(heroe: Heroe): Heroe {
   const { nombre, edad } = heroe;
-  return { nombre, edad, activo: true };
+  return { id: crypto.randomUUID(), nombre, edad, activo: true };
 }
 
 const thor = createHero({ nombre: "Thor", edad: 6000 });
 
 //? si thor tiene un id ejecuta el metodo, si no tiene id no lo ejecutara
-thor.id?.toString()
+thor.id?.toString();
 
-thor.id = 5
+thor.id = 5;
+
+//$ template union types
+type HexadecimalColor = `#${string}`;
+
+const color: HexadecimalColor = "0033ff";
+const color2: HexadecimalColor = "#0033ff";
+
+//$ union types
+
+thor.EscalaPoder = 'MUY FUERTE'
+thor.EscalaPoder= 'local'
+
+type HeroePoder = "local" | "planetario" | "galactico";
+
+let ann: 2 | string;
+
+ann = 1;
+ann = "1";
+ann = true;
+
+const habilitarDuracionAnimacion: boolean | number =199.9
+
+
+
+
+
+
+
+
+
