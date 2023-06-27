@@ -137,22 +137,29 @@ avengers.forEach((avenger) => {
 
 //$ optional properties
 
+//$ intersection types
+
 type Heroeid = `${string}-${string}-${string}-${string}-${string}`;
 
-type Heroe = {
-  readonly id?: Heroeid;
+type HeroeInfoBasica = {
   nombre: string;
   edad: number;
-  activo?: boolean;
-  EscalaPoder: HeroePoder;
 };
+
+type HeroePropiedades = {
+  readonly id?: Heroeid;
+  activo?: boolean;
+  EscalaPoder?: HeroePoder;
+};
+
+type Heroe = HeroeInfoBasica & HeroePropiedades;
 
 let heroe: Heroe = {
   nombre: "hola",
   edad: 5000,
 };
 
-function createHero(heroe: Heroe): Heroe {
+function createHero(heroe: HeroeInfoBasica): Heroe {
   const { nombre, edad } = heroe;
   return { id: crypto.randomUUID(), nombre, edad, activo: true };
 }
@@ -172,8 +179,8 @@ const color2: HexadecimalColor = "#0033ff";
 
 //$ union types
 
-thor.EscalaPoder = 'MUY FUERTE'
-thor.EscalaPoder= 'local'
+thor.EscalaPoder = "MUY FUERTE";
+thor.EscalaPoder = "local";
 
 type HeroePoder = "local" | "planetario" | "galactico";
 
@@ -183,13 +190,6 @@ ann = 1;
 ann = "1";
 ann = true;
 
-const habilitarDuracionAnimacion: boolean | number =199.9
+const habilitarDuracionAnimacion: boolean | number = 199.9;
 
-
-
-
-
-
-
-
-
+//$ type index
